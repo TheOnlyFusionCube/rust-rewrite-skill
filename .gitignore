@@ -1,0 +1,10 @@
+artifacts/
+**/__pycache__/
+*.pyc
+.env
+*.pem
+auth.json
+opencode-zen-api-key.txt
+.DS_Store
+target/
+**/rust/target/

@@ -1,0 +1,10 @@
+[package]
+name = "wcapp"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "wcapp"
+path = "src/main.rs"
+
+[dependencies]

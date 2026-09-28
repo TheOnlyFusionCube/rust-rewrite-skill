@@ -1,0 +1,79 @@
+{
+  "name": "opencode-repo-rewrite-v8-ini-reliable",
+  "version": 8,
+  "description": "Universality check: ini_mini (inih-shaped) under same v7 reliability scaffolding. Single-case A/B vs fastapi_mini 1.0. Frozen tests; inject PORTING/README/API; force-edit; staged milestones; skip-green; polish; resume; fingerprint. v8.1: same polish/stage budget bump as fastapi v7.2.",
+  "default_model": "opencode/mimo-v2.6-flash-free",
+  "variant": "max",
+  "timeout_sec": 3600,
+  "goal_pass_rate": 0.75,
+  "methodology": "riir-mini-ini-reliable",
+  "reliability": {
+    "inject_porting_docs": true,
+    "force_edit_mandate": true,
+    "preflight_first_milestone": true,
+    "postcheck_lib_changed": true,
+    "auto_resume_if_stub": true,
+    "staged_milestones": true,
+    "stage_unlock_threshold": 0.6,
+    "max_stages": 10,
+    "stage_timeout_sec": 600,
+    "resume_timeout_sec": 900,
+    "wall_budget_sec": 3600,
+    "max_prompt_inject_chars": 12000,
+    "forbid_bulk_test_reads": true,
+    "polish_timeout_sec": 900,
+    "max_polish_turns": 2
+  },
+  "cases": [
+    {
+      "id": "repo_ini_mini",
+      "category": "repo-rewrite-riir-ini-reliable",
+      "fixture_subdir": "repos/repo_ini_mini",
+      "timeout_sec": 3600,
+      "prompt": "Rewrite/port the Python ini_mini INI parser under source/ into the Rust crate under rust/.\n\nThis is an inih-shaped SUBSET \u2014 NOT full inih / configparser. Match source/README.md quirk contract and PORTING.md type map.\n\nImplement parse, Config (sections/keys/has_*/get_str/get_int/get_bool + *_or), IniError message shapes, and to_string round-trip so milestone tests pass.\n\nCritical contracts:\n- Duplicate keys: last-wins; duplicate section headers: merge\n- Keys before any section \u2192 DEFAULT; comments #/; only (no inline)\n- Errors exact: unclosed section on line N; section 'X' not found; key 'K' not found in section 'X'; value 'V' for 'S.K' is not a valid integer/boolean\n- Bools: true/yes/1/on and false/no/0/off; escapes \\\\ \\n \\t \\# \\;\n\nRequirements:\n- Work in rust/src/lib.rs (std-only preferred). Do NOT edit, weaken, delete, or skip anything under rust/tests/.\n- Leave source/ intact as the behavioral oracle.\n- Suggested order: m01_ \u2192 m02_ \u2192 m03_ \u2192 m04_ \u2192 m05_ \u2192 m06_ \u2192 m07_ \u2192 m08_. Run `cargo test m01_`, then m02_, \u2026 from rust/.\n- Work only inside this workdir.",
+      "check": [
+        {
+          "type": "riir_cargo_milestones",
+          "cwd": "rust",
+          "unlock_threshold": 0.6,
+          "completion_pass_threshold": 0.75,
+          "timeout_sec": 600,
+          "milestones": [
+            {
+              "id": "m01_parse",
+              "filter": "m01_"
+            },
+            {
+              "id": "m02_comments",
+              "filter": "m02_"
+            },
+            {
+              "id": "m03_duplicates",
+              "filter": "m03_"
+            },
+            {
+              "id": "m04_typed",
+              "filter": "m04_"
+            },
+            {
+              "id": "m05_errors",
+              "filter": "m05_"
+            },
+            {
+              "id": "m06_roundtrip",
+              "filter": "m06_"
+            },
+            {
+              "id": "m07_unicode",
+              "filter": "m07_"
+            },
+            {
+              "id": "m08_adversarial",
+              "filter": "m08_"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+S=comment_test|N=test1|V=1;2;3
+S=comment_test|N=test2|V=2;3;4;this won't be a comment, needs whitespace before ';'
+S=comment_test|N=test;3|V=345
+S=comment_test|N=test4|V=4#5#6
+S=comment_test|N=test7|V=
+S=comment_test|N=test8|V=; not a comment, needs whitespace before ';'
+e=0

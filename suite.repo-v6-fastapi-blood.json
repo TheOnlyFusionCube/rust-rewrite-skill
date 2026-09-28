@@ -1,0 +1,40 @@
+{
+  "name": "opencode-repo-rewrite-v6-fastapi-blood",
+  "version": 6,
+  "description": "Blood difficulty: FastAPI-shaped mini framework Python→Rust real-port (NOT full tiangolo/fastapi). 10 milestones; frozen rust/tests/; RIIR 60% unlock + % completion. Cite: https://rewritebench.com methodology at mini-repo scale.",
+  "default_model": "opencode/mimo-v2.6-flash-free",
+  "variant": "max",
+  "timeout_sec": 2400,
+  "goal_pass_rate": 0.75,
+  "methodology": "riir-mini-blood",
+  "cases": [
+    {
+      "id": "repo_fastapi_mini",
+      "category": "repo-rewrite-riir-blood",
+      "fixture_subdir": "repos/repo_fastapi_mini",
+      "timeout_sec": 2400,
+      "prompt": "Rewrite/port the Python fastapi_mini framework under source/ into the Rust crate under rust/.\n\nThis is a FastAPI-API-compatible SUBSET — NOT full FastAPI / tiangolo/fastapi. Match source/README.md quirk contract and PORTING.md type map.\n\nImplement App, APIRouter, Path/Query/Body-style route builders, Depends, HTTPException, JSONResponse/Outcome, TestClient, openapi() so milestone tests pass.\n\nCritical contracts:\n- 404: {\"detail\":\"Not Found\"}; 405: {\"detail\":\"Method Not Allowed\"} + allow header\n- 422: {\"detail\":[{\"loc\":[...],\"msg\":\"...\",\"type\":\"...\"}]} with exact msg/type strings from README\n- First registered route wins; include_router prefix normalization; response_model field filtering\n- OpenAPI 3.0.3 exactness for registered routes\n\nRequirements:\n- Work in rust/src/lib.rs (std-only preferred). Do NOT edit, weaken, delete, or skip anything under rust/tests/.\n- Leave source/ intact as the behavioral oracle.\n- Suggested order: m01_ → m02_ → m03_ → m04_ → m05_ → m06_ → m07_ → m08_ → m09_ → m10_. Run `cargo test m01_`, then m02_, … from rust/.\n- Work only inside this workdir.",
+      "check": [
+        {
+          "type": "riir_cargo_milestones",
+          "cwd": "rust",
+          "unlock_threshold": 0.6,
+          "completion_pass_threshold": 0.75,
+          "timeout_sec": 600,
+          "milestones": [
+            {"id": "m01_routes", "filter": "m01_"},
+            {"id": "m02_path", "filter": "m02_"},
+            {"id": "m03_query", "filter": "m03_"},
+            {"id": "m04_body", "filter": "m04_"},
+            {"id": "m05_depends", "filter": "m05_"},
+            {"id": "m06_status", "filter": "m06_"},
+            {"id": "m07_response_model", "filter": "m07_"},
+            {"id": "m08_router", "filter": "m08_"},
+            {"id": "m09_openapi", "filter": "m09_"},
+            {"id": "m10_adversarial", "filter": "m10_"}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "name": "opencode-repo-rewrite-v7-fastapi-reliable",
+  "version": 7,
+  "description": "Reliability scaffolding on fastapi_mini blood: inject PORTING/README/API, force-edit mandate, m01 preflight, lib.rs change check, staged milestone loop + stub resume. Frozen tests unchanged from v6. Cite: rewritebench.com at mini-repo scale. v7.1: skip already-green stages; polish remaining failures; max_stages=6. v7.2: max_stages=10, polish_timeout=900, max_polish_turns=2, wall=3600.",
+  "default_model": "opencode/mimo-v2.6-flash-free",
+  "variant": "max",
+  "timeout_sec": 3600,
+  "goal_pass_rate": 0.75,
+  "methodology": "riir-mini-blood-reliable",
+  "reliability": {
+    "inject_porting_docs": true,
+    "force_edit_mandate": true,
+    "preflight_first_milestone": true,
+    "postcheck_lib_changed": true,
+    "auto_resume_if_stub": true,
+    "staged_milestones": true,
+    "stage_unlock_threshold": 0.6,
+    "max_stages": 10,
+    "stage_timeout_sec": 600,
+    "resume_timeout_sec": 900,
+    "wall_budget_sec": 3600,
+    "max_prompt_inject_chars": 12000,
+    "forbid_bulk_test_reads": true,
+    "polish_timeout_sec": 900,
+    "max_polish_turns": 2
+  },
+  "cases": [
+    {
+      "id": "repo_fastapi_mini",
+      "category": "repo-rewrite-riir-blood-reliable",
+      "fixture_subdir": "repos/repo_fastapi_mini",
+      "timeout_sec": 3600,
+      "prompt": "Rewrite/port the Python fastapi_mini framework under source/ into the Rust crate under rust/.\n\nThis is a FastAPI-API-compatible SUBSET \u2014 NOT full FastAPI / tiangolo/fastapi. Match source/README.md quirk contract and PORTING.md type map.\n\nImplement App, APIRouter, Path/Query/Body-style route builders, Depends, HTTPException, JSONResponse/Outcome, TestClient, openapi() so milestone tests pass.\n\nCritical contracts:\n- 404: {\"detail\":\"Not Found\"}; 405: {\"detail\":\"Method Not Allowed\"} + allow header\n- 422: {\"detail\":[{\"loc\":[...],\"msg\":\"...\",\"type\":\"...\"}]} with exact msg/type strings from README\n- First registered route wins; include_router prefix normalization; response_model field filtering\n- OpenAPI 3.0.3 exactness for registered routes\n\nRequirements:\n- Work in rust/src/lib.rs (std-only preferred). Do NOT edit, weaken, delete, or skip anything under rust/tests/.\n- Leave source/ intact as the behavioral oracle.\n- Suggested order: m01_ \u2192 m02_ \u2192 m03_ \u2192 m04_ \u2192 m05_ \u2192 m06_ \u2192 m07_ \u2192 m08_ \u2192 m09_ \u2192 m10_. Run `cargo test m01_`, then m02_, \u2026 from rust/.\n- Work only inside this workdir.",
+      "check": [
+        {
+          "type": "riir_cargo_milestones",
+          "cwd": "rust",
+          "unlock_threshold": 0.6,
+          "completion_pass_threshold": 0.75,
+          "timeout_sec": 600,
+          "milestones": [
+            {
+              "id": "m01_routes",
+              "filter": "m01_"
+            },
+            {
+              "id": "m02_path",
+              "filter": "m02_"
+            },
+            {
+              "id": "m03_query",
+              "filter": "m03_"
+            },
+            {
+              "id": "m04_body",
+              "filter": "m04_"
+            },
+            {
+              "id": "m05_depends",
+              "filter": "m05_"
+            },
+            {
+              "id": "m06_status",
+              "filter": "m06_"
+            },
+            {
+              "id": "m07_response_model",
+              "filter": "m07_"
+            },
+            {
+              "id": "m08_router",
+              "filter": "m08_"
+            },
+            {
+              "id": "m09_openapi",
+              "filter": "m09_"
+            },
+            {
+              "id": "m10_adversarial",
+              "filter": "m10_"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

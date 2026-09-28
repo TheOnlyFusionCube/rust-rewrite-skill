@@ -1,0 +1,6 @@
+S=colon_tests|N=Content-Type|V=text/html
+S=colon_tests|N=foo|V=bar
+S=colon_tests|N=adams|V=42
+S=colon_tests|N=funny1|V=with = equals
+S=colon_tests|N=funny2|V=with : colons
+e=0

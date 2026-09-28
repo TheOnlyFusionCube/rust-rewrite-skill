@@ -1,0 +1,38 @@
+{
+  "name": "opencode-repo-rewrite-v5-blood",
+  "version": 5,
+  "description": "Blood difficulty: mini CHIP-8 real-port slice (RIIR Game Boy DNA at tiny scale). NOT RIIR Bench / SameBoy / Game Boy. Cite: https://rewritebench.com. Cosmac VIP quirks; 8 milestones; frozen rust/tests/.",
+  "default_model": "opencode/mimo-v2.6-flash-free",
+  "variant": "max",
+  "timeout_sec": 1800,
+  "goal_pass_rate": 0.75,
+  "methodology": "riir-mini-blood",
+  "cases": [
+    {
+      "id": "repo_chip8",
+      "category": "repo-rewrite-riir-blood",
+      "fixture_subdir": "repos/repo_chip8",
+      "timeout_sec": 1800,
+      "prompt": "Rewrite/port the Python CHIP-8 core under source/ into the Rust crate under rust/.\n\nThis is a scaled-down real-port slice inspired by RIIR Bench Game Boy DNA methodology (https://rewritebench.com) — mini CHIP-8, NOT a Game Boy emulator and NOT RIIR Bench/SameBoy.\n\nQuirk contract (Cosmac VIP / chip8-test-suite friendly) — see source/README.md:\n- Shift 8xy6/8xyE: Vy→Vx; VF = shifted-out bit of Vy\n- 8xy4/5/7 set VF carry/borrow as Cosmac VIP\n- Bnnn: PC = nnn + V0\n- Dxyn: XOR sprites; wrap x/y modulo 64×32; VF=1 on collision\n- Font at 0x50–0x9F; Fx55/Fx65 increment I by x+1\n- tick_timers() decrements DT/ST; step() does not\n- Fx0A waits until set_key, then stores key index in Vx\n\nRequirements:\n- Implement Chip8 in rust/src/lib.rs so milestone tests pass (API: new, load_rom, step, run, mem_slice, framebuffer, set_key/key, delay_timer/sound_timer, reg/set_reg, pc/i_reg/stack_depth, tick_timers, write_mem).\n- Do NOT edit, weaken, delete, or skip anything under rust/tests/. Prefer std-only. Leave source/ intact as the behavioral oracle.\n- Suggested order: m01_mem → m02_flow → m03_load → m04_alu → m05_skip → m06_draw → m07_timer_key → m08_fx. Run `cargo test m01_`, then m02_, … from rust/.\n- Work only inside this workdir.",
+      "check": [
+        {
+          "type": "riir_cargo_milestones",
+          "cwd": "rust",
+          "unlock_threshold": 0.6,
+          "completion_pass_threshold": 0.75,
+          "timeout_sec": 600,
+          "milestones": [
+            {"id": "m01_mem", "filter": "m01_"},
+            {"id": "m02_flow", "filter": "m02_"},
+            {"id": "m03_load", "filter": "m03_"},
+            {"id": "m04_alu", "filter": "m04_"},
+            {"id": "m05_skip", "filter": "m05_"},
+            {"id": "m06_draw", "filter": "m06_"},
+            {"id": "m07_timer_key", "filter": "m07_"},
+            {"id": "m08_fx", "filter": "m08_"}
+          ]
+        }
+      ]
+    }
+  ]
+}

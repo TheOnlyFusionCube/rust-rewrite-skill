@@ -1,0 +1,8 @@
+S=section1|N=single1|V=abc
+S=section1|N=multi|V=this is a
+S=section1|N=multi|V=multi-line value
+S=section1|N=single2|V=xyz
+S=section2|N=multi|V=a
+S=section2|N=multi|V=b
+S=section2|N=multi|V=c
+e=0

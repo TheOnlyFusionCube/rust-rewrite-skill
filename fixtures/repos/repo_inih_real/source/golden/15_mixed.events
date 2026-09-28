@@ -1,0 +1,8 @@
+S=|N=pre|V=1
+S=main|N=name|V=value
+S=main|N=cont|V=line1
+S=main|N=cont|V=line2
+S=main|N=dup|V=a
+S=main|N=dup|V=b
+S=other|N=z|V=99
+e=0

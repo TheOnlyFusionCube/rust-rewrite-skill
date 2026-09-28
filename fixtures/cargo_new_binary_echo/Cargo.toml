@@ -1,0 +1,10 @@
+[package]
+name = "echo_arg"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "echo_arg"
+path = "src/main.rs"
+
+[dependencies]

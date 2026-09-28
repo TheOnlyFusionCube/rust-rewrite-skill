@@ -1,0 +1,6 @@
+[package]
+name = "py_to_rust_add"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

@@ -1,0 +1,8 @@
+[package]
+name = "inih_real"
+version = "0.1.0"
+edition = "2021"
+description = "Bounded Rust port target for real upstream benhoyt/inih (handler-style subset)"
+license = "BSD-3-Clause"
+
+[dependencies]

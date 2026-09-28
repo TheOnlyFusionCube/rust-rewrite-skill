@@ -1,0 +1,18 @@
+S=section1|N=one|V=This is a test
+S=section1|N=two|V=1234
+S= section 2 |N=happy|V=4
+S= section 2 |N=sad|V=
+S=comment_test|N=test1|V=1;2;3
+S=comment_test|N=test2|V=2;3;4;this won't be a comment, needs whitespace before ';'
+S=comment_test|N=test;3|V=345
+S=comment_test|N=test4|V=4#5#6
+S=comment_test|N=test7|V=
+S=comment_test|N=test8|V=; not a comment, needs whitespace before ';'
+S=colon_tests|N=Content-Type|V=text/html
+S=colon_tests|N=foo|V=bar
+S=colon_tests|N=adams|V=42
+S=colon_tests|N=funny1|V=with = equals
+S=colon_tests|N=funny2|V=with : colons
+S=colon_tests|N=funny3|V=two = equals
+S=colon_tests|N=funny4|V=two : colons
+e=0

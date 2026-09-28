@@ -1,0 +1,3 @@
+S=db|N=host|V=localhost
+S=db|N=port|V=5432
+e=0

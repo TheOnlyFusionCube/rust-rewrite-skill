@@ -1,0 +1,6 @@
+S=s|N=a|V=1
+S=s|N=b|V=2
+S=s|N=c|V=3#not-inline
+S=s|N=d|V=4;also-not-inline-no-ws
+S=s|N=e|V=5
+e=0

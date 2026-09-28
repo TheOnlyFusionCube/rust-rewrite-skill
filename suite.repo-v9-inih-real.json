@@ -1,0 +1,55 @@
+{
+  "name": "opencode-repo-rewrite-v9-inih-real-reliable",
+  "version": 9,
+  "description": "Real upstream benhoyt/inih C→Rust port fixture under v7.2 reliability scaffolding. Handler-style subset + C oracle goldens. Frozen tests; inject PORTING/README; force-edit; staged milestones; skip-green; polish 2×900; wall 3600.",
+  "default_model": "opencode/mimo-v2.6-flash-free",
+  "variant": "max",
+  "timeout_sec": 3600,
+  "goal_pass_rate": 0.75,
+  "methodology": "riir-inih-real-reliable",
+  "reliability": {
+    "inject_porting_docs": true,
+    "force_edit_mandate": true,
+    "preflight_first_milestone": true,
+    "postcheck_lib_changed": true,
+    "auto_resume_if_stub": true,
+    "staged_milestones": true,
+    "stage_unlock_threshold": 0.6,
+    "max_stages": 10,
+    "stage_timeout_sec": 600,
+    "resume_timeout_sec": 900,
+    "wall_budget_sec": 3600,
+    "max_prompt_inject_chars": 12000,
+    "forbid_bulk_test_reads": true,
+    "polish_timeout_sec": 900,
+    "max_polish_turns": 2
+  },
+  "cases": [
+    {
+      "id": "repo_inih_real",
+      "category": "repo-rewrite-riir-inih-real-reliable",
+      "fixture_subdir": "repos/repo_inih_real",
+      "timeout_sec": 3600,
+      "prompt": "Rewrite/port the real upstream C inih library under source/upstream/ into the Rust crate under rust/.\n\nThis is a REAL upstream subset (benhoyt/inih) — NOT the Python toy ini_mini, and NOT a claim of full inih parity. Match source/README.md quirk contract, PORTING.md API map, and source/golden/*.events from the C oracle.\n\nImplement parse_string → ParseOutcome { events, error_line }, Event { section, name, value }, and Ini { parse, get last-wins, has_section, sections, events, error_line } so milestone tests pass.\n\nCritical contracts (inih defaults):\n- Keys before any [section] → section \"\" (empty string), NOT \"DEFAULT\"\n- Section names are NOT trimmed: [ section 2 ] → \" section 2 \"\n- Comments: start-of-line ;# ; inline ; only after whitespace; # is NOT inline\n- name=value and name:value; multiline = leading-whitespace continuation → separate events\n- Duplicate keys: multiple events; get() last-wins; error_line keeps first error; keep parsing\n- UTF-8 BOM allowed at start\n\nRequirements:\n- Work in rust/src/lib.rs (std-only preferred). Do NOT edit, weaken, delete, or skip anything under rust/tests/.\n- Leave source/ intact (upstream + oracle + goldens).\n- Suggested order: m01_ → m02_ → m03_ → m04_ → m05_ → m06_ → m07_ → m08_. Run `cargo test m01_`, then m02_, … from rust/.\n- Work only inside this workdir.",
+      "check": [
+        {
+          "type": "riir_cargo_milestones",
+          "cwd": "rust",
+          "unlock_threshold": 0.6,
+          "completion_pass_threshold": 0.75,
+          "timeout_sec": 600,
+          "milestones": [
+            { "id": "m01_basic", "filter": "m01_" },
+            { "id": "m02_comments", "filter": "m02_" },
+            { "id": "m03_colon", "filter": "m03_" },
+            { "id": "m04_presection", "filter": "m04_" },
+            { "id": "m05_duplicates", "filter": "m05_" },
+            { "id": "m06_multiline", "filter": "m06_" },
+            { "id": "m07_errors", "filter": "m07_" },
+            { "id": "m08_bom_adversarial", "filter": "m08_" }
+          ]
+        }
+      ]
+    }
+  ]
+}
