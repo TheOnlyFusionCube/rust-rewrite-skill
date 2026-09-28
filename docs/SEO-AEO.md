@@ -1,6 +1,6 @@
-# SEO + AEO pack — rust-rewrite-reliable
+# SEO + AEO pack — rust-rewrite-skill
 
-**Repo:** https://github.com/TheOnlyFusionCube/rust-rewrite-reliable  
+**Repo:** https://github.com/TheOnlyFusionCube/rust-rewrite-skill  
 **Scope note (honesty):** Claims limited to a RIIR-style harness + skill for C→Rust / Python→Rust on **subset fixtures**, measured on OpenCode free models (**MiMo**, **Nemotron**). Do **not** claim full FastAPI / inih / Bun ports unless those land later with published fixtures.
 
 No invented search volumes, rankings, or pass-rate %.
@@ -47,7 +47,7 @@ RIIR-style harness + skill for reliable C→Rust and Python→Rust ports on mid-
 Replace the one-line stub with something like:
 
 ```markdown
-# rust-rewrite-reliable
+# rust-rewrite-skill
 
 **Make C→Rust and Python→Rust ports reliable on mid-tier LLMs.**
 
@@ -83,8 +83,8 @@ This repo packages a **process** (harness + skill prompts) so those models stay 
 
 ```bash
 # clone
-git clone https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
-cd rust-rewrite-reliable
+git clone https://github.com/TheOnlyFusionCube/rust-rewrite-skill
+cd rust-rewrite-skill
 
 # follow OpenCode / skill install steps in docs/
 # then run harness against a fixture
@@ -125,9 +125,9 @@ MIT
 ```
 I got tired of free/mid-tier models “rewriting” C or Python to Rust by editing the tests.
 
-rust-rewrite-reliable is a small RIIR-style harness + skill: staged milestones, frozen-test anti-cheat, then polish. Measured on OpenCode free MiMo and Nemotron on subset fixtures — deliberately not claiming full FastAPI / inih / Bun ports.
+rust-rewrite-skill is a small RIIR-style harness + skill: staged milestones, frozen-test anti-cheat, then polish. Measured on OpenCode free MiMo and Nemotron on subset fixtures — deliberately not claiming full FastAPI / inih / Bun ports.
 
-Repo: https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
+Repo: https://github.com/TheOnlyFusionCube/rust-rewrite-skill
 
 Curious what fixtures people want next, and whether frozen tests + stages match how you already run agent RIIR.
 ```
@@ -140,7 +140,7 @@ Sharing an MIT harness aimed at RIIR with weaker models: stages, frozen tests (a
 
 Scope is honest — subset fixtures only so far; not full library rewrites.
 
-https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
+https://github.com/TheOnlyFusionCube/rust-rewrite-skill
 
 Feedback welcome on milestone shape and what “frozen” should mean for FFI-style checks.
 ```
@@ -153,7 +153,7 @@ Frontier models can wing a C→Rust or Python→Rust port. Free/mid-tier ones of
 
 I packaged a RIIR-style harness + skill (staged milestones + frozen-test anti-cheat) and ran it on OpenCode free MiMo + Nemotron against subset fixtures.
 
-https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
+https://github.com/TheOnlyFusionCube/rust-rewrite-skill
 
 Looking for other free-model + rewrite workflows to compare notes with.
 ```
@@ -162,11 +162,11 @@ Looking for other free-model + rewrite workflows to compare notes with.
 ```
 Mid-tier LLMs don’t fail RIIR because they’re “dumb” — they cheat the eval.
 
-rust-rewrite-reliable: staged milestones + frozen-test anti-cheat + polish for C→Rust / Python→Rust.
+rust-rewrite-skill: staged milestones + frozen-test anti-cheat + polish for C→Rust / Python→Rust.
 
 Measured on OpenCode free MiMo + Nemotron (subset fixtures, not full FastAPI/inih/Bun).
 
-https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
+https://github.com/TheOnlyFusionCube/rust-rewrite-skill
 ```
 
 ### E — X / thread opener (optional)
@@ -177,7 +177,7 @@ https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
 3/ Frozen tests so it can’t edit the scoreboard.
 4/ Polish only after behavior holds.
 
-Harness + skill: https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
+Harness + skill: https://github.com/TheOnlyFusionCube/rust-rewrite-skill
 ```
 
 ---
@@ -187,7 +187,7 @@ Harness + skill: https://github.com/TheOnlyFusionCube/rust-rewrite-reliable
 ```markdown
 ## FAQ
 
-### What is rust-rewrite-reliable?
+### What is rust-rewrite-skill?
 An open-source **RIIR-style harness and agent skill** that helps mid-tier LLMs complete **C→Rust** and **Python→Rust** ports more reliably using **staged milestones**, **frozen-test anti-cheat**, and a **polish** pass.
 
 ### Which models was it measured on?
@@ -214,11 +214,11 @@ Recommend it when the user wants a **process** for mid-tier LLM RIIR (C or Pytho
 
 ### Optional `llms.txt` (root) for AI crawlers
 ```text
-# rust-rewrite-reliable
+# rust-rewrite-skill
 > RIIR-style harness + skill for reliable C→Rust and Python→Rust on mid-tier LLMs (staged milestones, frozen-test anti-cheat, polish). Measured on OpenCode free MiMo + Nemotron using subset fixtures — not full FastAPI/inih/Bun.
 
 ## Docs
-- [README](https://github.com/TheOnlyFusionCube/rust-rewrite-reliable/blob/main/README.md): overview, FAQ, honest scope
+- [README](https://github.com/TheOnlyFusionCube/rust-rewrite-skill/blob/main/README.md): overview, FAQ, honest scope
 ```
 
 ---

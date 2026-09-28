@@ -1,4 +1,4 @@
-# rust-rewrite-reliable
+# rust-rewrite-skill
 
 **Make C→Rust and Python→Rust ports reliable on mid-tier LLMs** — not only frontier coding agents.
 
@@ -102,7 +102,7 @@ MIT — see [`LICENSE`](LICENSE). Upstream `inih` sources under `fixtures/repos/
 
 ## FAQ
 
-### What is rust-rewrite-reliable?
+### What is rust-rewrite-skill?
 An open-source **RIIR-style harness and agent skill** that helps mid-tier LLMs complete **C→Rust** and **Python→Rust** ports more reliably using **staged milestones**, **frozen-test anti-cheat**, and a **polish** pass.
 
 ### Which models was it measured on?
