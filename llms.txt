@@ -1,0 +1,7 @@
+# rust-rewrite-reliable
+> RIIR-style harness + skill for reliable C→Rust and Python→Rust on mid-tier LLMs (staged milestones, frozen-test anti-cheat, polish). Measured on OpenCode free MiMo + Nemotron using subset fixtures — not full FastAPI/inih/Bun.
+
+## Docs
+- [README](https://github.com/TheOnlyFusionCube/rust-rewrite-reliable/blob/main/README.md): overview, FAQ, honest scope
+- [RESULTS](https://github.com/TheOnlyFusionCube/rust-rewrite-reliable/blob/main/docs/RESULTS.md): measured runs
+- [SEO-AEO pack](https://github.com/TheOnlyFusionCube/rust-rewrite-reliable/blob/main/docs/SEO-AEO.md): keywords and launch copy
